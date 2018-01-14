@@ -44,7 +44,8 @@ class Map extends React.Component<IProps, any> {
           receive: false
         },
         parser(geometry, material) {
-          return new THREE.Mesh(geometry, material);
+          console.log(geometry);
+          return new THREE.Mesh(new THREE.BoxGeometry(1, 2, 0), material);
         },
         position: {
           x: 0,
