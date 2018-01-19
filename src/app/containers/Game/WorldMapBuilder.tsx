@@ -3,17 +3,17 @@ import * as React from 'react';
 import { IWorldMap } from 'models/worldMap';
 import { Tile } from 'containers';
 
-export interface IWorldMapFactory {
-    obtainGroundTiles(worldMapData: any);
+export interface IWorldBuilder {
+    BuildGroundTileComponents(worldMapData: any);
 }
 
-class WorldMapFactory implements IWorldMapFactory {
+class WorldBuilder implements IWorldBuilder {
     public worldMap: IWorldMap;
 
     constructor(worldMap: IWorldMap) {
         this.worldMap = worldMap;
     }
-    public obtainGroundTiles(): any {
+    public BuildGroundTileComponents(): any {
         let groundTiles = [];
         // add the custom ground tiles found in the worldmap data
         groundTiles = this.worldMap.worldMap.data.ground_tiles.map((tile, i) => (
@@ -27,8 +27,8 @@ class WorldMapFactory implements IWorldMapFactory {
     }
 }
 
-export { WorldMapFactory }
+export { WorldBuilder }
 
-export function createWorldMapFactory(worldMap: IWorldMap): WorldMapFactory {
-    return new WorldMapFactory(worldMap);
+export function createWorldBuilder(worldMap: IWorldMap): WorldBuilder {
+    return new WorldBuilder(worldMap);
 }

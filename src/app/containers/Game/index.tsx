@@ -5,7 +5,7 @@ import { setWorldMap } from 'modules/worldMap/';
 import { IWorld } from 'models/world';
 import { IWorldAction } from 'models/world';
 import { IWorldMapAction, IWorldMap } from 'models/worldMap';
-import { createWorldMapFactory } from './WorldMapFactory';
+import { createWorldBuilder } from './WorldMapBuilder';
 
 const { connect } = require('react-redux');
 
@@ -60,9 +60,9 @@ class Game extends React.Component<IProps, any> {
     let groundTiles = [];
 
     if (world.world && worldMap.worldMap) {
-      const worldMapFactory = createWorldMapFactory(worldMap);
+      const worldBuilder = createWorldBuilder(worldMap);
 
-      groundTiles = worldMapFactory.obtainGroundTiles();
+      groundTiles = worldBuilder.BuildGroundTileComponents();
     }
 
     return (
