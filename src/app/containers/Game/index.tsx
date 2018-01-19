@@ -5,8 +5,7 @@ import { setWorldMap } from 'modules/worldMap/';
 import { IWorld } from 'models/world';
 import { IWorldAction } from 'models/world';
 import { IWorldMapAction, IWorldMap } from 'models/worldMap';
-
-import { Tile } from 'containers';
+import { createWorldBuilder } from './WorldMapBuilder';
 
 const { connect } = require('react-redux');
 
@@ -61,12 +60,9 @@ class Game extends React.Component<IProps, any> {
     let groundTiles = [];
 
     if (world.world && worldMap.worldMap) {
-      groundTiles = worldMap.worldMap.data.ground_tiles.map((tile, i) => (
-        <Tile
-          key={i}
-          tileData={tile}
-        />
-      ));
+      const worldBuilder = createWorldBuilder(worldMap);
+
+      groundTiles = worldBuilder.BuildGroundTileComponents();
     }
 
     return (
